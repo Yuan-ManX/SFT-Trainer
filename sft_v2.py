@@ -1,4 +1,3 @@
-
 """
 # Full training
 python trl/scripts/sft.py \
@@ -55,9 +54,8 @@ from trl import (
 
 
 def main(script_args, training_args, model_args):
-    ################
+    
     # Model init kwargs & Tokenizer
-    ################
     quantization_config = get_quantization_config(model_args)
     model_kwargs = dict(
         revision=model_args.model_revision,
@@ -88,14 +86,10 @@ def main(script_args, training_args, model_args):
     if tokenizer.pad_token is None:
         tokenizer.pad_token = tokenizer.eos_token
 
-    ################
     # Dataset
-    ################
     dataset = load_dataset(script_args.dataset_name, name=script_args.dataset_config)
 
-    ################
     # Training
-    ################
     trainer = SFTTrainer(
         model=model,
         args=training_args,
@@ -123,6 +117,7 @@ def make_parser(subparsers: argparse._SubParsersAction = None):
 
 
 if __name__ == "__main__":
+    
     parser = make_parser()
     script_args, training_args, model_args = parser.parse_args_and_config()
     main(script_args, training_args, model_args)
