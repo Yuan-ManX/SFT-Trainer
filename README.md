@@ -1,2 +1,3 @@
-# SFT-Trainer
+# SFT Trainer
+
 Supervised Fine-tuning Trainer.
